@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1EADD57F-085F-4BCF-BFA0-DD0B8707F7D0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIS_Renamer</RootNamespace>
+    <AssemblyName>SISRenamer</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SISInfo.cs" />
+    <Compile Include="SISX\Fields\SISArray.cs" />
+    <Compile Include="SISX\Fields\SISBlob.cs" />
+    <Compile Include="SISX\Fields\SISCapabilities.cs" />
+    <Compile Include="SISX\Fields\SISCertificateChain.cs" />
+    <Compile Include="SISX\Fields\SISCompressed.cs" />
+    <Compile Include="SISX\Fields\SISContent.cs" />
+    <Compile Include="SISX\Fields\SISController.cs" />
+    <Compile Include="SISX\Fields\SISControllerChecksum.cs" />
+    <Compile Include="SISX\Fields\SISData.cs" />
+    <Compile Include="SISX\Fields\SISDataChecksum.cs" />
+    <Compile Include="SISX\Fields\SISDataIndex.cs" />
+    <Compile Include="SISX\Fields\SISDataUnit.cs" />
+    <Compile Include="SISX\Fields\SISDate.cs" />
+    <Compile Include="SISX\Fields\SISDateTime.cs" />
+    <Compile Include="SISX\Fields\SISDependency.cs" />
+    <Compile Include="SISX\Fields\SISElseIf.cs" />
+    <Compile Include="SISX\Fields\SISExpression.cs" />
+    <Compile Include="SISX\Fields\SISField.cs" />
+    <Compile Include="SISX\Fields\SISFileData.cs" />
+    <Compile Include="SISX\Fields\SISFileDescription.cs" />
+    <Compile Include="SISX\Fields\SISHash.cs" />
+    <Compile Include="SISX\Fields\SISIf.cs" />
+    <Compile Include="SISX\Fields\SISInfo.cs" />
+    <Compile Include="SISX\Fields\SISInstallBlock.cs" />
+    <Compile Include="SISX\Fields\SISLanguage.cs" />
+    <Compile Include="SISX\Fields\SISLogo.cs" />
+    <Compile Include="SISX\Fields\SISPrerequisites.cs" />
+    <Compile Include="SISX\Fields\SISProperties.cs" />
+    <Compile Include="SISX\Fields\SISProperty.cs" />
+    <Compile Include="SISX\Fields\SISSignature.cs" />
+    <Compile Include="SISX\Fields\SISSignatureAlgorithm.cs" />
+    <Compile Include="SISX\Fields\SISSignatureCertificateChain.cs" />
+    <Compile Include="SISX\Fields\SISString.cs" />
+    <Compile Include="SISX\Fields\SISSupportedLanguages.cs" />
+    <Compile Include="SISX\Fields\SISSupportedOption.cs" />
+    <Compile Include="SISX\Fields\SISSupportedOptions.cs" />
+    <Compile Include="SISX\Fields\SISTime.cs" />
+    <Compile Include="SISX\Fields\SISUid.cs" />
+    <Compile Include="SISX\Fields\SISVersion.cs" />
+    <Compile Include="SISX\Fields\SISVersionRange.cs" />
+    <Compile Include="SISX\SISXFile.cs" />
+    <Compile Include="SISX\SISXUnpacker.cs" />
+    <Compile Include="SISX\Utility\Bits.cs" />
+    <Compile Include="SISX\Utility\Dirs.cs" />
+    <Compile Include="ZLIB\Adler32.cs" />
+    <Compile Include="ZLIB\Deflate.cs" />
+    <Compile Include="ZLIB\InfBlocks.cs" />
+    <Compile Include="ZLIB\InfCodes.cs" />
+    <Compile Include="ZLIB\Inflate.cs" />
+    <Compile Include="ZLIB\InfTree.cs" />
+    <Compile Include="ZLIB\StaticTree.cs" />
+    <Compile Include="ZLIB\SupportClass.cs" />
+    <Compile Include="ZLIB\Tree.cs" />
+    <Compile Include="ZLIB\ZInputStream.cs" />
+    <Compile Include="ZLIB\Zlib.cs" />
+    <Compile Include="ZLIB\ZOutputStream.cs" />
+    <Compile Include="ZLIB\ZStream.cs" />
+    <Compile Include="ZLIB\ZStreamException.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ZLIB\_history.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
