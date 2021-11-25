@@ -1,6 +1,8 @@
 # Symbian SIS Renamer
  Tool for renaming SIS files
 
+ Only depends on .NET Framework v2.0 (no .NET issue on WinXP and Win7 VMs)
+
 ![image](https://user-images.githubusercontent.com/49725539/143486323-e5f4e9df-9fb3-4335-853e-404181166973.png)
 
 Special thanks to Marco Bellino for sharing the source code of "SISXplorer", without the sources for it, "SIS Renamer" wouldn't be able to work without binary dependencies
