@@ -304,7 +304,7 @@
             this.buttonResetListboxes.UseVisualStyleBackColor = true;
             this.buttonResetListboxes.Click += new System.EventHandler(this.clearBothListboxes);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,7 +319,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "SIS File Renamer by Nuru TaşDemir";
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
