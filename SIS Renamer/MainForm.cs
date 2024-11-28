@@ -87,14 +87,12 @@ namespace SIS_Renamer
             {
                 for (int a = 0; a < listBoxSisFiles.Items.Count; a++)
                 {
+                    string sanitizedFileName = listBoxNewNames.Items[a].ToString();
                     //only rename sis file if it successfully parsed
-                    if (listBoxNewNames.Items[a].ToString() != sisNameWhenErrorHappens)
+                    if (sanitizedFileName != sisNameWhenErrorHappens)
                     {
                         try
                         {
-                            // Sanitize new file name (replace illegal characters)
-                            string sanitizedNewName = ReplaceIllegalCharacters(listBoxNewNames.Items[a].ToString());
-
                             // Get the full path of the original file
                             string originalFilePath = listBoxSisFiles.Items[a].ToString();
 
@@ -107,7 +105,7 @@ namespace SIS_Renamer
                             }
 
                             // Combine the directory with the sanitized new file name
-                            string newFilePath = Path.Combine(directory, sanitizedNewName);
+                            string newFilePath = Path.Combine(directory, sanitizedFileName);
 
                             // Ensure unique file name if the target already exists
                             newFilePath = EnsureUniqueFileName(newFilePath);
@@ -117,7 +115,7 @@ namespace SIS_Renamer
                         }
                         catch (Exception ex)
                         {
-                            showErrorMessage($"Failed to rename file: {listBoxSisFiles.Items[a].ToString()}. Error: {ex.Message}");
+                            showErrorMessage(String.Format("Failed to rename file: {0}\nError: {1}", listBoxSisFiles.Items[a].ToString(), ex.Message));
                         }
                     }
                 }
@@ -135,13 +133,13 @@ namespace SIS_Renamer
         /// <returns>The sanitized file name or path.</returns>
         private string ReplaceIllegalCharacters(string input)
         {
-            // Get invalid file name characters (: is included)
+            // Get all invalid file name characters
             char[] invalidChars = Path.GetInvalidFileNameChars();
 
             foreach (char invalidChar in invalidChars)
             {
-                // Use _ as replacement character
-                input = input.Replace(invalidChar, '_');
+                // remove invalid characters
+                input = input.Replace(invalidChar.ToString(), "");
             }
 
             return input;
@@ -164,7 +162,7 @@ namespace SIS_Renamer
             // Append _number until a unique file name is found
             while (File.Exists(uniqueFilePath))
             {
-                uniqueFilePath = Path.Combine(directory, $"{fileName}_{counter}{extension}");
+                uniqueFilePath = Path.Combine(directory, String.Format("{0}_{1}{2}", fileName, counter, extension));
                 counter++;
             }
 
@@ -319,17 +317,9 @@ namespace SIS_Renamer
                     temporaryNameString = prefixForFileName + sisInfo.appName + appVersionTmp + vendorNameTmp + appUIDTmp + installTypeTmp + supportedDevicesTmp + applicationTypeTmp + ".sis";
                 }
 
-                //remove forbidden characters and double spaces
+                //sanitize name by removing illegal characters, double spaces and single quotes
+                temporaryNameString = ReplaceIllegalCharacters(temporaryNameString);
                 temporaryNameString = temporaryNameString.Replace("  ", " ");
-                temporaryNameString = temporaryNameString.Replace("<", "");
-                temporaryNameString = temporaryNameString.Replace(">", "");
-                temporaryNameString = temporaryNameString.Replace(":", "");
-                temporaryNameString = temporaryNameString.Replace("\"", "");
-                temporaryNameString = temporaryNameString.Replace("/", "");
-                temporaryNameString = temporaryNameString.Replace("\\", "");
-                temporaryNameString = temporaryNameString.Replace("|", "");
-                temporaryNameString = temporaryNameString.Replace("?", "");
-                temporaryNameString = temporaryNameString.Replace("*", "");
                 temporaryNameString = temporaryNameString.Replace("\'", "");
 
                 listBoxNewNames.Items.Add(temporaryNameString);
