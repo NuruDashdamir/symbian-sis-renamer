@@ -82,16 +82,93 @@ namespace SIS_Renamer
                 return;
             }
 
-            //should rename files if both listboxes have
+            //should rename files if both listboxes have the same number of items
             if (listBoxSisFiles.Items.Count == listBoxNewNames.Items.Count)
             {
                 for (int a = 0; a < listBoxSisFiles.Items.Count; a++)
                 {
                     //only rename sis file if it successfully parsed
                     if (listBoxNewNames.Items[a].ToString() != sisNameWhenErrorHappens)
-                        Process.Start("CMD.exe", "/C ren \"" + listBoxSisFiles.Items[a].ToString() + "\" \"" + listBoxNewNames.Items[a].ToString().Replace(":", "") + "\"");
+                    {
+                        try
+                        {
+                            // Sanitize new file name (replace illegal characters)
+                            string sanitizedNewName = ReplaceIllegalCharacters(listBoxNewNames.Items[a].ToString());
+
+                            // Get the full path of the original file
+                            string originalFilePath = listBoxSisFiles.Items[a].ToString();
+
+                            // Get the directory path of the original file
+                            string directory = Path.GetDirectoryName(originalFilePath);
+                            if (directory == null)
+                            {
+                                showErrorMessage("Invalid file path.");
+                                continue;
+                            }
+
+                            // Combine the directory with the sanitized new file name
+                            string newFilePath = Path.Combine(directory, sanitizedNewName);
+
+                            // Ensure unique file name if the target already exists
+                            newFilePath = EnsureUniqueFileName(newFilePath);
+
+                            // Rename the file
+                            File.Move(originalFilePath, newFilePath);
+                        }
+                        catch (Exception ex)
+                        {
+                            showErrorMessage($"Failed to rename file: {listBoxSisFiles.Items[a].ToString()}. Error: {ex.Message}");
+                        }
+                    }
                 }
             }
+            else
+            {
+                showErrorMessage("The number of SIS files and new names does not match.");
+            }
+        }
+
+        /// <summary>
+        /// Replaces illegal characters in a file path or name with a valid substitute.
+        /// </summary>
+        /// <param name="input">The file name or path to sanitize.</param>
+        /// <returns>The sanitized file name or path.</returns>
+        private string ReplaceIllegalCharacters(string input)
+        {
+            // Get invalid file name characters (: is included)
+            char[] invalidChars = Path.GetInvalidFileNameChars();
+
+            foreach (char invalidChar in invalidChars)
+            {
+                // Use _ as replacement character
+                input = input.Replace(invalidChar, '_');
+            }
+
+            return input;
+        }
+
+        /// <summary>
+        /// Ensures the file name is unique by appending a number if a file with the same name exists.
+        /// </summary>
+        /// <param name="filePath">The initial file path.</param>
+        /// <returns>A unique file path.</returns>
+        private string EnsureUniqueFileName(string filePath)
+        {
+            string directory = Path.GetDirectoryName(filePath) ?? string.Empty;
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string extension = Path.GetExtension(filePath);
+
+            int counter = 1;
+            string uniqueFilePath = filePath;
+
+            // Append _number until a unique file name is found
+            while (File.Exists(uniqueFilePath))
+            {
+                uniqueFilePath = Path.Combine(directory, $"{fileName}_{counter}{extension}");
+                counter++;
+            }
+
+            return uniqueFilePath;
         }
 
         private void onlyFileName_CheckedChanged(object sender, EventArgs e)

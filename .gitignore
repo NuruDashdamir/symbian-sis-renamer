@@ -1,3 +1,5 @@
 *.suo
 SIS Renamer/bin/
 SIS Renamer/obj/
+.vs
+.idea
