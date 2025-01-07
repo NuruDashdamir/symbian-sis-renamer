@@ -9,7 +9,7 @@
         public string vendorName;
         public string installType;
         public string applicationType;
-
+        public bool isSignedApp;
 
         public SISInfo(string sisFileLocation)
         {
@@ -22,9 +22,9 @@
             installType = "";
             applicationType = "";
 
-            //applicationType eelated boolean flags
-            bool isFlashApp = false, isPyS60_v2_0_0_App = false, isPythonApp = false, isQtApp = false, isTheme = false; //extraData flags
-            //END
+            //applicationType related boolean flags
+            bool isFlashApp = false, isPyS60_v2_0_0_App = false, isPythonApp = false, isQtApp = false, isTheme = false;
+
 
             var sisFile = System.IO.File.Open(sisFileLocation, System.IO.FileMode.Open);
             var sisBinaryReader = new System.IO.BinaryReader(sisFile);
@@ -33,6 +33,7 @@
             appVersion = "v" + sis.cnt._controller.info.version.ToString().Replace(",", ".");
             vendorName = sis.cnt._controller.info.vendorName.aString.ToString();
             appUID = "[" + sis.cnt._controller.info.uid.ToString() + "]";
+            isSignedApp = sis.cnt._controller.signatures.Count > 0;
 
             //detect if package depends on QT (test if app is QT app)
             foreach (SISX.Fields.SISDependency tmp in sis.cnt._controller.prerequisites.dependencies.fields)
