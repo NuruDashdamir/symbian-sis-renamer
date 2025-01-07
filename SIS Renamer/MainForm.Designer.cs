@@ -252,8 +252,8 @@
             this.sisNamingTemplateTextBox.Name = "sisNamingTemplateTextBox";
             this.sisNamingTemplateTextBox.Size = new System.Drawing.Size(839, 22);
             this.sisNamingTemplateTextBox.TabIndex = 11;
-            this.sisNamingTemplateTextBox.Text = "{name} - {version} - {vendor} - {uid} - {install_type} - {supported_devices} - {s" +
-    "is_type}";
+            this.sisNamingTemplateTextBox.Text = "{name} - {version} - {vendor} - {uid} - {install_type} - {supported_devices}{app_" +
+    "type}.sis{x}";
             // 
             // groupBox6
             // 

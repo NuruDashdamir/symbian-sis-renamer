@@ -280,9 +280,10 @@ namespace SIS_Renamer
                     temporaryNameString = temporaryNameString.Replace("{uid}", sisInfo.appUID);
                     temporaryNameString = temporaryNameString.Replace("{install_type}", sisInfo.installType);
                     temporaryNameString = temporaryNameString.Replace("{supported_devices}", sisInfo.supportedDevices);
-                    temporaryNameString = temporaryNameString.Replace("{sis_type}", sisInfo.applicationType);
-
-                    temporaryNameString += ".sis";
+                    temporaryNameString = temporaryNameString.Replace("{app_type}", sisInfo.applicationType);
+                    temporaryNameString = temporaryNameString.Replace("{x}", (sisInfo.isSignedApp ? "x" : ""));
+                    temporaryNameString = temporaryNameString.Replace("{signed_ext}", (sisInfo.isSignedApp ? "sisx" : "sis"));
+                    // {name} - {version} - {vendor} - {uid} - {install_type} - {supported_devices}{sis_type}.sis{x}
                 }
                 else
                 {
@@ -310,7 +311,7 @@ namespace SIS_Renamer
                     else supportedDevicesTmp = seperatorOfFileName + sisInfo.supportedDevices;
 
                     //show application type
-                    if (!showAppType.Checked) applicationTypeTmp = "";
+                    if (!showAppType.Checked || sisInfo.applicationType == "") applicationTypeTmp = "";
                     else applicationTypeTmp = " " + sisInfo.applicationType;
 
                     string prefixForFileName = fileNamePrefixTextBox.Text;
