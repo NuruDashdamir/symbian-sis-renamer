@@ -1,4 +1,6 @@
-﻿namespace SIS_Renamer
+﻿using System.Collections;
+using System.Collections.Generic;
+namespace SIS_Renamer
 {
     class SISInfo
     {
@@ -11,7 +13,9 @@
         public string applicationType;
         public bool isSignedApp;
 
-        public SISInfo(string sisFileLocation)
+        public string filesInPackage;
+
+        public SISInfo(string sisFileLocation, bool fileListIsNeeded = false)
         {
             //RESET DATA ABOUT PACKAGE
             appName = "";
@@ -21,6 +25,7 @@
             vendorName = "";
             installType = "";
             applicationType = "";
+            filesInPackage = "";
 
             //applicationType related boolean flags
             bool isFlashApp = false, isPyS60_v2_0_0_App = false, isPythonApp = false, isQtApp = false, isTheme = false;
@@ -105,15 +110,58 @@
             }
 
             //APPLICATION TYPE section end
+            
+            if (fileListIsNeeded) prepareFileListInPackage(sis);
 
             sisBinaryReader.Close();
             sisFile.Dispose();
             sisFile.Close();
         }
 
+        private void prepareFileListInPackage(SISX.SISXFile sis, bool ignoreEmptyTargets = false)
+        {
+            var fieldsToHandle = new List<ArrayList>();
+            fieldsToHandle.Add(sis.cnt._controller.installBlock.files.fields);
+
+            var ifBlocksList = new List<SISX.Fields.SISIf>();
+            foreach (SISX.Fields.SISIf sisIf in sis.cnt._controller.installBlock.ifBlocks.fields) ifBlocksList.Add(sisIf);
+
+            while (ifBlocksList.Count > 0)
+            {
+                SISX.Fields.SISIf currentIfBlock = ifBlocksList[0];
+
+                fieldsToHandle.Add(currentIfBlock.installBlock.files.fields);
+                foreach (SISX.Fields.SISElseIf sisElseIf in currentIfBlock.elseIfs.fields)
+                {
+                    fieldsToHandle.Add(sisElseIf.installBlock.files.fields);
+                }
+
+                foreach (SISX.Fields.SISIf sisIf in currentIfBlock.installBlock.ifBlocks.fields)
+                {
+                    ifBlocksList.Add(sisIf);
+                }
+                ifBlocksList.RemoveAt(0);
+            }
+
+            var fileInfoList = new List<string>();
+            foreach (ArrayList sisFileDescriptionArray in fieldsToHandle)
+            {
+                foreach (SISX.Fields.SISFileDescription sisFileDesc in sisFileDescriptionArray)
+                {
+                    string currentFileTarget = sisFileDesc.target.aString;
+                    string hash = System.BitConverter.ToString(sisFileDesc.hash.hashData.data).Replace("-", "");
+                    if (currentFileTarget == "" && ignoreEmptyTargets) continue;
+                    fileInfoList.Add(hash + " - " + currentFileTarget);
+                }
+            }
+
+            filesInPackage = string.Join("\n", fileInfoList.ToArray());
+        }
+
         public void getData()
         {
             System.Windows.Forms.MessageBox.Show("App Name: " + appName + "\nApp Version: " + appVersion + "\nSupported Devices: " + supportedDevices + "\nUID: " + appUID + "\nVendor: " + vendorName + "\nType: " + installType + "\nExtra: " + applicationType);
+            System.Windows.Forms.MessageBox.Show(filesInPackage);
         }
     }
 }
