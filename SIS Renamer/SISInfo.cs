@@ -28,7 +28,7 @@ namespace SIS_Renamer
             filesInPackage = "";
 
             //applicationType related boolean flags
-            bool isFlashApp = false, isPyS60_v2_0_0_App = false, isPythonApp = false, isQtApp = false, isTheme = false;
+            bool isFlashApp = false, isPyS60_v2_0_0_App = false, isPythonApp = false, isQtApp = false, isTheme = false, isSmartInstaller = false;
 
 
             var sisFile = System.IO.File.Open(sisFileLocation, System.IO.FileMode.Open);
@@ -91,6 +91,7 @@ namespace SIS_Renamer
                 if (!isTheme && currentFileLocation.EndsWith(".skn") && currentFileLocation.Contains("private\\10207114\\")) isTheme = true;
                 else if (!isQtApp && currentFileLocation.EndsWith(".qml")) isQtApp = true;
                 else if (!isFlashApp && currentFileLocation.EndsWith(".swf")) isFlashApp = true;
+                else if (!isSmartInstaller && currentFileLocation.Contains(".sis") && currentFileLocation.Contains("private\\2002ccce\\")) isSmartInstaller = true; // .sisx too, detects 99.6% cases
                 else if (!isPyS60_v2_0_0_App && currentFileLocation.EndsWith(".py"))
                 {
                     isPythonApp = true;
@@ -102,6 +103,7 @@ namespace SIS_Renamer
             if (isTheme) applicationType += "{THEME}";
             if (isFlashApp) applicationType += "{FLASH}";
             if (isQtApp) applicationType += "{QT}";
+            if (isSmartInstaller) applicationType += "{QT-SI}";
 
             if (isPythonApp)
             {
