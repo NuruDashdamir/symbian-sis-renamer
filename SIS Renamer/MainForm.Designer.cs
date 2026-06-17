@@ -49,6 +49,8 @@
             this.useNamingTemplateCheckBox = new System.Windows.Forms.CheckBox();
             this.previewNames = new System.Windows.Forms.Button();
             this.buttonResetListboxes = new System.Windows.Forms.Button();
+            this.buttonAddFiles = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -61,10 +63,10 @@
             this.listBoxSisFiles.AllowDrop = true;
             this.listBoxSisFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxSisFiles.FormattingEnabled = true;
-            this.listBoxSisFiles.Location = new System.Drawing.Point(8, 22);
-            this.listBoxSisFiles.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxSisFiles.ItemHeight = 12;
+            this.listBoxSisFiles.Location = new System.Drawing.Point(6, 18);
             this.listBoxSisFiles.Name = "listBoxSisFiles";
-            this.listBoxSisFiles.Size = new System.Drawing.Size(548, 394);
+            this.listBoxSisFiles.Size = new System.Drawing.Size(439, 280);
             this.listBoxSisFiles.TabIndex = 0;
             this.listBoxSisFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBoxSisFiles_DragDrop);
             this.listBoxSisFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBoxSisFiles_DragEnter);
@@ -73,10 +75,10 @@
             // 
             this.listBoxNewNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxNewNames.FormattingEnabled = true;
-            this.listBoxNewNames.Location = new System.Drawing.Point(565, 22);
-            this.listBoxNewNames.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxNewNames.ItemHeight = 12;
+            this.listBoxNewNames.Location = new System.Drawing.Point(452, 18);
             this.listBoxNewNames.Name = "listBoxNewNames";
-            this.listBoxNewNames.Size = new System.Drawing.Size(472, 394);
+            this.listBoxNewNames.Size = new System.Drawing.Size(378, 280);
             this.listBoxNewNames.TabIndex = 1;
             this.listBoxNewNames.DoubleClick += new System.EventHandler(this.listBoxNewNames_DoubleClick);
             // 
@@ -85,10 +87,9 @@
             this.buttonRenameFiles.BackColor = System.Drawing.Color.DarkRed;
             this.buttonRenameFiles.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRenameFiles.ForeColor = System.Drawing.Color.Snow;
-            this.buttonRenameFiles.Location = new System.Drawing.Point(1072, 462);
-            this.buttonRenameFiles.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonRenameFiles.Location = new System.Drawing.Point(858, 370);
             this.buttonRenameFiles.Name = "buttonRenameFiles";
-            this.buttonRenameFiles.Size = new System.Drawing.Size(224, 45);
+            this.buttonRenameFiles.Size = new System.Drawing.Size(179, 36);
             this.buttonRenameFiles.TabIndex = 2;
             this.buttonRenameFiles.Text = "Rename Files";
             this.buttonRenameFiles.UseVisualStyleBackColor = false;
@@ -97,10 +98,9 @@
             // showAppUID
             // 
             this.showAppUID.AutoSize = true;
-            this.showAppUID.Location = new System.Drawing.Point(8, 84);
-            this.showAppUID.Margin = new System.Windows.Forms.Padding(4);
+            this.showAppUID.Location = new System.Drawing.Point(6, 67);
             this.showAppUID.Name = "showAppUID";
-            this.showAppUID.Size = new System.Drawing.Size(120, 21);
+            this.showAppUID.Size = new System.Drawing.Size(97, 17);
             this.showAppUID.TabIndex = 3;
             this.showAppUID.Text = "Show App UID";
             this.showAppUID.UseVisualStyleBackColor = true;
@@ -110,10 +110,9 @@
             this.onlyFileName.AutoSize = true;
             this.onlyFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onlyFileName.ForeColor = System.Drawing.Color.Red;
-            this.onlyFileName.Location = new System.Drawing.Point(8, 200);
-            this.onlyFileName.Margin = new System.Windows.Forms.Padding(4);
+            this.onlyFileName.Location = new System.Drawing.Point(6, 160);
             this.onlyFileName.Name = "onlyFileName";
-            this.onlyFileName.Size = new System.Drawing.Size(184, 21);
+            this.onlyFileName.Size = new System.Drawing.Size(146, 17);
             this.onlyFileName.TabIndex = 4;
             this.onlyFileName.Text = "Only File Name Mode";
             this.onlyFileName.UseVisualStyleBackColor = true;
@@ -122,10 +121,9 @@
             // showVendorName
             // 
             this.showVendorName.AutoSize = true;
-            this.showVendorName.Location = new System.Drawing.Point(8, 55);
-            this.showVendorName.Margin = new System.Windows.Forms.Padding(4);
+            this.showVendorName.Location = new System.Drawing.Point(6, 44);
             this.showVendorName.Name = "showVendorName";
-            this.showVendorName.Size = new System.Drawing.Size(155, 21);
+            this.showVendorName.Size = new System.Drawing.Size(121, 17);
             this.showVendorName.TabIndex = 5;
             this.showVendorName.Text = "Show Vendor Name";
             this.showVendorName.UseVisualStyleBackColor = true;
@@ -135,31 +133,27 @@
             this.showVersionInfo.AutoSize = true;
             this.showVersionInfo.Checked = true;
             this.showVersionInfo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showVersionInfo.Location = new System.Drawing.Point(8, 26);
-            this.showVersionInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.showVersionInfo.Location = new System.Drawing.Point(6, 21);
             this.showVersionInfo.Name = "showVersionInfo";
-            this.showVersionInfo.Size = new System.Drawing.Size(143, 21);
+            this.showVersionInfo.Size = new System.Drawing.Size(112, 17);
             this.showVersionInfo.TabIndex = 6;
             this.showVersionInfo.Text = "Show Version Info";
             this.showVersionInfo.UseVisualStyleBackColor = true;
             // 
             // fileNamePrefixTextBox
             // 
-            this.fileNamePrefixTextBox.Location = new System.Drawing.Point(8, 23);
-            this.fileNamePrefixTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.fileNamePrefixTextBox.Location = new System.Drawing.Point(6, 18);
             this.fileNamePrefixTextBox.Name = "fileNamePrefixTextBox";
-            this.fileNamePrefixTextBox.Size = new System.Drawing.Size(189, 22);
+            this.fileNamePrefixTextBox.Size = new System.Drawing.Size(152, 20);
             this.fileNamePrefixTextBox.TabIndex = 7;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Location = new System.Drawing.Point(1072, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(858, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(224, 333);
+            this.groupBox1.Size = new System.Drawing.Size(179, 266);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Renaming Settings";
@@ -173,11 +167,9 @@
             this.groupBox5.Controls.Add(this.showVersionInfo);
             this.groupBox5.Controls.Add(this.showVendorName);
             this.groupBox5.Controls.Add(this.showAppUID);
-            this.groupBox5.Location = new System.Drawing.Point(9, 85);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Location = new System.Drawing.Point(7, 68);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(207, 240);
+            this.groupBox5.Size = new System.Drawing.Size(166, 192);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "What to include in name:";
@@ -187,10 +179,9 @@
             this.showAppType.AutoSize = true;
             this.showAppType.Checked = true;
             this.showAppType.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showAppType.Location = new System.Drawing.Point(8, 171);
-            this.showAppType.Margin = new System.Windows.Forms.Padding(4);
+            this.showAppType.Location = new System.Drawing.Point(6, 137);
             this.showAppType.Name = "showAppType";
-            this.showAppType.Size = new System.Drawing.Size(129, 21);
+            this.showAppType.Size = new System.Drawing.Size(102, 17);
             this.showAppType.TabIndex = 12;
             this.showAppType.Text = "Show App Type";
             this.showAppType.UseVisualStyleBackColor = true;
@@ -200,10 +191,9 @@
             this.showSupportedDevices.AutoSize = true;
             this.showSupportedDevices.Checked = true;
             this.showSupportedDevices.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showSupportedDevices.Location = new System.Drawing.Point(8, 142);
-            this.showSupportedDevices.Margin = new System.Windows.Forms.Padding(4);
+            this.showSupportedDevices.Location = new System.Drawing.Point(6, 114);
             this.showSupportedDevices.Name = "showSupportedDevices";
-            this.showSupportedDevices.Size = new System.Drawing.Size(188, 21);
+            this.showSupportedDevices.Size = new System.Drawing.Size(147, 17);
             this.showSupportedDevices.TabIndex = 11;
             this.showSupportedDevices.Text = "Show Supported Devices";
             this.showSupportedDevices.UseVisualStyleBackColor = true;
@@ -211,10 +201,9 @@
             // showInstallationType
             // 
             this.showInstallationType.AutoSize = true;
-            this.showInstallationType.Location = new System.Drawing.Point(8, 113);
-            this.showInstallationType.Margin = new System.Windows.Forms.Padding(4);
+            this.showInstallationType.Location = new System.Drawing.Point(6, 90);
             this.showInstallationType.Name = "showInstallationType";
-            this.showInstallationType.Size = new System.Drawing.Size(171, 21);
+            this.showInstallationType.Size = new System.Drawing.Size(133, 17);
             this.showInstallationType.TabIndex = 10;
             this.showInstallationType.Text = "Show Installation Type";
             this.showInstallationType.UseVisualStyleBackColor = true;
@@ -222,24 +211,21 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.fileNamePrefixTextBox);
-            this.groupBox4.Location = new System.Drawing.Point(8, 22);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Location = new System.Drawing.Point(6, 18);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(207, 55);
+            this.groupBox4.Size = new System.Drawing.Size(166, 44);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Prefix for file names:";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonAddFiles);
             this.groupBox3.Controls.Add(this.listBoxNewNames);
             this.groupBox3.Controls.Add(this.listBoxSisFiles);
-            this.groupBox3.Location = new System.Drawing.Point(17, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(14, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(1047, 429);
+            this.groupBox3.Size = new System.Drawing.Size(838, 343);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SIS Files";
@@ -247,10 +233,9 @@
             // sisNamingTemplateTextBox
             // 
             this.sisNamingTemplateTextBox.Enabled = false;
-            this.sisNamingTemplateTextBox.Location = new System.Drawing.Point(8, 23);
-            this.sisNamingTemplateTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.sisNamingTemplateTextBox.Location = new System.Drawing.Point(6, 18);
             this.sisNamingTemplateTextBox.Name = "sisNamingTemplateTextBox";
-            this.sisNamingTemplateTextBox.Size = new System.Drawing.Size(839, 22);
+            this.sisNamingTemplateTextBox.Size = new System.Drawing.Size(672, 20);
             this.sisNamingTemplateTextBox.TabIndex = 11;
             this.sisNamingTemplateTextBox.Text = "{name} - {version} - {vendor} - {uid} - {install_type} - {supported_devices}{app_" +
     "type}.sis{x}";
@@ -259,11 +244,9 @@
             // 
             this.groupBox6.Controls.Add(this.useNamingTemplateCheckBox);
             this.groupBox6.Controls.Add(this.sisNamingTemplateTextBox);
-            this.groupBox6.Location = new System.Drawing.Point(17, 452);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox6.Location = new System.Drawing.Point(14, 362);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(1047, 55);
+            this.groupBox6.Size = new System.Drawing.Size(838, 44);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Use Naming Template (overwrites all other settings):";
@@ -271,10 +254,9 @@
             // useNamingTemplateCheckBox
             // 
             this.useNamingTemplateCheckBox.AutoSize = true;
-            this.useNamingTemplateCheckBox.Location = new System.Drawing.Point(856, 26);
-            this.useNamingTemplateCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.useNamingTemplateCheckBox.Location = new System.Drawing.Point(685, 21);
             this.useNamingTemplateCheckBox.Name = "useNamingTemplateCheckBox";
-            this.useNamingTemplateCheckBox.Size = new System.Drawing.Size(170, 21);
+            this.useNamingTemplateCheckBox.Size = new System.Drawing.Size(131, 17);
             this.useNamingTemplateCheckBox.TabIndex = 12;
             this.useNamingTemplateCheckBox.Text = "Use Naming Template";
             this.useNamingTemplateCheckBox.UseVisualStyleBackColor = true;
@@ -283,10 +265,9 @@
             // previewNames
             // 
             this.previewNames.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previewNames.Location = new System.Drawing.Point(1072, 409);
-            this.previewNames.Margin = new System.Windows.Forms.Padding(4);
+            this.previewNames.Location = new System.Drawing.Point(858, 327);
             this.previewNames.Name = "previewNames";
-            this.previewNames.Size = new System.Drawing.Size(224, 45);
+            this.previewNames.Size = new System.Drawing.Size(179, 36);
             this.previewNames.TabIndex = 11;
             this.previewNames.Text = "Preview Names";
             this.previewNames.UseVisualStyleBackColor = true;
@@ -295,20 +276,35 @@
             // buttonResetListboxes
             // 
             this.buttonResetListboxes.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonResetListboxes.Location = new System.Drawing.Point(1072, 356);
-            this.buttonResetListboxes.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonResetListboxes.Location = new System.Drawing.Point(858, 285);
             this.buttonResetListboxes.Name = "buttonResetListboxes";
-            this.buttonResetListboxes.Size = new System.Drawing.Size(224, 45);
+            this.buttonResetListboxes.Size = new System.Drawing.Size(179, 36);
             this.buttonResetListboxes.TabIndex = 12;
             this.buttonResetListboxes.Text = "Reset Listboxes";
             this.buttonResetListboxes.UseVisualStyleBackColor = true;
             this.buttonResetListboxes.Click += new System.EventHandler(this.clearBothListboxes);
             // 
+            // buttonAddFiles
+            // 
+            this.buttonAddFiles.Location = new System.Drawing.Point(6, 311);
+            this.buttonAddFiles.Name = "buttonAddFiles";
+            this.buttonAddFiles.Size = new System.Drawing.Size(87, 23);
+            this.buttonAddFiles.TabIndex = 2;
+            this.buttonAddFiles.Text = "Add files ...";
+            this.buttonAddFiles.UseVisualStyleBackColor = true;
+            this.buttonAddFiles.Click += new System.EventHandler(this.buttonAddFiles_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "SIS files|*.sis";
+            this.openFileDialog1.Multiselect = true;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1312, 518);
+            this.ClientSize = new System.Drawing.Size(1050, 414);
             this.Controls.Add(this.buttonResetListboxes);
             this.Controls.Add(this.previewNames);
             this.Controls.Add(this.groupBox6);
@@ -317,7 +313,6 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "SIS File Renamer by Nuru TaşDemir";
@@ -355,6 +350,8 @@
         private System.Windows.Forms.Button previewNames;
         private System.Windows.Forms.CheckBox showAppType;
         private System.Windows.Forms.Button buttonResetListboxes;
+        private System.Windows.Forms.Button buttonAddFiles;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

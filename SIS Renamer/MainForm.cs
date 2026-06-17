@@ -326,5 +326,17 @@ namespace SIS_Renamer
                 listBoxNewNames.Items.Add(temporaryNameString);
             }
         }
+
+        private void buttonAddFiles_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                foreach (String filename in openFileDialog1.FileNames)
+                {
+                    listBoxSisFiles.Items.Add(filename);
+                }
+            }
+
+        }
     }
 }
