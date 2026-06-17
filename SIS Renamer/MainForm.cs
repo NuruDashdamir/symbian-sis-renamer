@@ -338,5 +338,17 @@ namespace SIS_Renamer
             }
 
         }
+
+        private void buttonAddDir_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] sisFiles = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.sis");
+                foreach (String filename in sisFiles)
+                {
+                    listBoxSisFiles.Items.Add(filename);
+                }
+            }
+        }
     }
 }

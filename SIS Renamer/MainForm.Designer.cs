@@ -44,13 +44,15 @@
             this.showInstallationType = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonAddFiles = new System.Windows.Forms.Button();
             this.sisNamingTemplateTextBox = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.useNamingTemplateCheckBox = new System.Windows.Forms.CheckBox();
             this.previewNames = new System.Windows.Forms.Button();
             this.buttonResetListboxes = new System.Windows.Forms.Button();
-            this.buttonAddFiles = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonAddDir = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -220,6 +222,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonAddDir);
             this.groupBox3.Controls.Add(this.buttonAddFiles);
             this.groupBox3.Controls.Add(this.listBoxNewNames);
             this.groupBox3.Controls.Add(this.listBoxSisFiles);
@@ -229,6 +232,16 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SIS Files";
+            // 
+            // buttonAddFiles
+            // 
+            this.buttonAddFiles.Location = new System.Drawing.Point(6, 311);
+            this.buttonAddFiles.Name = "buttonAddFiles";
+            this.buttonAddFiles.Size = new System.Drawing.Size(87, 23);
+            this.buttonAddFiles.TabIndex = 2;
+            this.buttonAddFiles.Text = "Add files ...";
+            this.buttonAddFiles.UseVisualStyleBackColor = true;
+            this.buttonAddFiles.Click += new System.EventHandler(this.buttonAddFiles_Click);
             // 
             // sisNamingTemplateTextBox
             // 
@@ -284,21 +297,21 @@
             this.buttonResetListboxes.UseVisualStyleBackColor = true;
             this.buttonResetListboxes.Click += new System.EventHandler(this.clearBothListboxes);
             // 
-            // buttonAddFiles
-            // 
-            this.buttonAddFiles.Location = new System.Drawing.Point(6, 311);
-            this.buttonAddFiles.Name = "buttonAddFiles";
-            this.buttonAddFiles.Size = new System.Drawing.Size(87, 23);
-            this.buttonAddFiles.TabIndex = 2;
-            this.buttonAddFiles.Text = "Add files ...";
-            this.buttonAddFiles.UseVisualStyleBackColor = true;
-            this.buttonAddFiles.Click += new System.EventHandler(this.buttonAddFiles_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "SIS files|*.sis";
             this.openFileDialog1.Multiselect = true;
+            // 
+            // buttonAddDir
+            // 
+            this.buttonAddDir.Location = new System.Drawing.Point(109, 311);
+            this.buttonAddDir.Name = "buttonAddDir";
+            this.buttonAddDir.Size = new System.Drawing.Size(124, 23);
+            this.buttonAddDir.TabIndex = 3;
+            this.buttonAddDir.Text = "Add directory ...";
+            this.buttonAddDir.UseVisualStyleBackColor = true;
+            this.buttonAddDir.Click += new System.EventHandler(this.buttonAddDir_Click);
             // 
             // MainForm
             // 
@@ -352,6 +365,8 @@
         private System.Windows.Forms.Button buttonResetListboxes;
         private System.Windows.Forms.Button buttonAddFiles;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonAddDir;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
