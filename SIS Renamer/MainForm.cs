@@ -15,7 +15,7 @@ namespace SIS_Renamer
 {
     public partial class MainForm : Form
     {
-        String errorMsgNoSisFilesLoaded = "You must drag & drop SIS files to left listbox first!";
+        String errorMsgNoSisFilesLoaded = "You must add SIS files to left listbox first!";
         String errorMsgSisNamesNotReady = "You must preview names before renaming!";
         String warningMsgTooManyFiles = "You loaded more than 20 files, this can cause the program to hang for a moment.\nDo you want to continue?";
 
