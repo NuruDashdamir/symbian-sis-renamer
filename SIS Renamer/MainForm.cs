@@ -15,7 +15,7 @@ namespace SIS_Renamer
 {
     public partial class MainForm : Form
     {
-        String errorMsgNoSisFilesLoaded = "You must drag & drop SIS files to left listbox first!";
+        String errorMsgNoSisFilesLoaded = "You must add SIS files to left listbox first!";
         String errorMsgSisNamesNotReady = "You must preview names before renaming!";
         String warningMsgTooManyFiles = "You loaded more than 20 files, this can cause the program to hang for a moment.\nDo you want to continue?";
 
@@ -324,6 +324,30 @@ namespace SIS_Renamer
                 temporaryNameString = temporaryNameString.Replace("\'", "");
 
                 listBoxNewNames.Items.Add(temporaryNameString);
+            }
+        }
+
+        private void buttonAddFiles_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                foreach (String filename in openFileDialog1.FileNames)
+                {
+                    listBoxSisFiles.Items.Add(filename);
+                }
+            }
+
+        }
+
+        private void buttonAddDir_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] sisFiles = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.sis");
+                foreach (String filename in sisFiles)
+                {
+                    listBoxSisFiles.Items.Add(filename);
+                }
             }
         }
     }
