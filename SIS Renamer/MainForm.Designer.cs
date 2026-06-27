@@ -299,7 +299,7 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "SIS files|*.sis";
+            this.openFileDialog1.Filter = "SIS(X) files|*.sis;*.sisx";
             this.openFileDialog1.Multiselect = true;
             // 
             // buttonAddDir

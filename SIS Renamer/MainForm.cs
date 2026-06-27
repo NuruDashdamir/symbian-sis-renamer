@@ -343,8 +343,21 @@ namespace SIS_Renamer
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
+                /*string[] extensions = new[] { ".sis", ".sisx" };
+                string[] sisFiles = Directory.GetFiles(folderBrowserDialog1.SelectedPath)
+                    .Where(f => extensions.Contains(f.Extension.ToLower()))
+                    .ToArray();*/
+
+                // sis
                 string[] sisFiles = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.sis");
                 foreach (String filename in sisFiles)
+                {
+                    listBoxSisFiles.Items.Add(filename);
+                }
+
+                // sisx
+                string[] sisxFiles = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.sisx");
+                foreach (String filename in sisxFiles)
                 {
                     listBoxSisFiles.Items.Add(filename);
                 }
